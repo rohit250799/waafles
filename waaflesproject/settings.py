@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 import os
 from pathlib import Path
+from django.db import models
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -26,8 +27,6 @@ SECRET_KEY = str(os.environ.get('SECRET_KEY'))
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
-#configuring the settings
 
 
 # Application definition
@@ -57,7 +56,7 @@ ROOT_URLCONF = 'waaflesproject.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [os.path.join(BASE_DIR, 'templates/waafles')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -124,8 +123,14 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
+#MEDIA_URL = 'media/'
+#MEDIA_ROOT = BASE_DIR / 'media'
+#MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+
 MEDIA_URL = 'media/'
-MEDIA_ROOT = BASE_DIR / 'media'
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'waaflesproject/static')]
+#MEDIA_ROOT = Path.joinpath(BASE_DIR, 'media/')
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
