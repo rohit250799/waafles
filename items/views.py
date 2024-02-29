@@ -1,14 +1,14 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import Category, Item
-from .forms import NewItemForm
+from .forms import NewItemForm, EditItemForm
 import os
 
 # Create your views here.
-def itemsTest(request):
-    items_Display = Item.objects.filter(is_sold = False)[0:6]
+def itemsIndex(request):
+    items = Item.objects.filter(is_sold=False)[0:6]
     categories_Display = Category.objects.all()
     return render(request, 'items/itemsIndex.html', {
-        'items': items_Display,
+        'items': items,
         'categories': categories_Display,
     })
 
@@ -29,3 +29,11 @@ def newitem(request):
         'form': form,
         'title': 'New Item',
     })
+
+def edititem(request):
+    item = get_object_or_404(Item, created_by = request.user)
+    if request.method == 'POST':
+        form = EditItemForm(request.POST, request.FILES, instance=item)
+        if form.is_valid():
+            form.save()
+            return redirect
