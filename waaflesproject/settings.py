@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/5.0/ref/settings/
 """
 import os
 from pathlib import Path
-from django.db import models
+#from django.db import models
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -123,9 +123,8 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 
-#MEDIA_URL = 'media/'
-#MEDIA_ROOT = BASE_DIR / 'media'
-#MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_ROOT = BASE_DIR / 'media'
+#MEDIA_ROOT = os.path.join(BASE_DIR, 'media/item_images/')
 
 
 MEDIA_URL = 'media/'

@@ -16,7 +16,7 @@ class Item(models.Model):
     name = models.CharField(max_length = 150)
     price = models.DecimalField(max_digits = 6, decimal_places = 2)
     description = models.TextField(blank = True, null = True)
-    photo = models.ImageField(upload_to='item_images', blank=True, null=True)
+    photo = models.ImageField(upload_to='media/item_images', null=True, blank=True)
     is_sold = models.BooleanField(default = False)
     created_by = models.ForeignKey(User, related_name = 'items', on_delete = models.CASCADE)
     created_at = models.DateTimeField(auto_now_add = True)
