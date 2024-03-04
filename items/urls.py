@@ -7,5 +7,5 @@ app_name = 'items'
 urlpatterns = [
     path('', views.itemsIndex, name='index'),
     path('new/', views.newitem, name='newitem'),
-    path('edit/', views.edititem, name='edititem'),
+    path('<int:pk>/edit/', views.edititem, name='edititem'),
 ]
