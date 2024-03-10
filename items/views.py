@@ -36,10 +36,19 @@ def edititem(request, pk):
         form = EditItemForm(request.POST, request.FILES, instance=item)
         if form.is_valid():
             form.save()
-            return redirect('item:testTemplate1', pk=item.id)
+            #return redirect('items:testTemplate1', pk=item.id)
+            return redirect('items:index')
     else:
         form = EditItemForm(instance=item)
     return render(request, 'items/forms.html', {
         'form': form,
         'title': 'Edit item',
+    })
+
+def detail(request, pk):
+    item = get_object_or_404(Item, pk=pk)
+    related_items = Item.objects.filter(category=item.category, is_sold = False).exclude(pk=pk)[0:3]
+    return render(request, 'items/detail.html', {
+        'item': item,
+        'related_items': related_items,
     })
